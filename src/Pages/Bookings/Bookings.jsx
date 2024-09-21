@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Booking from "./Booking/Booking";
-import axios from "axios";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Bookings = () => {
