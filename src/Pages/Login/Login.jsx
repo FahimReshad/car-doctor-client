@@ -21,8 +21,6 @@ const Login = () => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
         const user = { email };
-
-        
         axios
           .post("http://localhost:5000/jwt", user, { withCredentials: true })
           .then((res) => {

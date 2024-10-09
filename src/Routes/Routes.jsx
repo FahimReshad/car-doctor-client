@@ -8,36 +8,44 @@ import Bookings from "../Pages/Bookings/Bookings";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <MainLayout></MainLayout>,
-      children: [
-        {
-            path: "/",
-            element: <Home></Home>
-        },
-        {
-            path: "/about",
-            
-        },
-        {
-            path: '/login',
-            element: <Login></Login>
-        },
-        {
-          path: '/signUp',
-          element: <SignUp></SignUp>
-        },
-        {
-          path: '/checkout/:id',
-          element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
-          loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
-        },
-        {
-          path: 'bookings',
-          element: <PrivateRoute><Bookings></Bookings></PrivateRoute>
-        }
-      ]
-    },
-  ]);
-  export default router;
+  {
+    path: "/",
+    element: <MainLayout></MainLayout>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/about",
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/signUp",
+        element: <SignUp></SignUp>,
+      },
+      {
+        path: "/checkout/:id",
+        element: (
+          <PrivateRoute>
+            <Checkout></Checkout>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/services/${params.id}`),
+      },
+      {
+        path: "bookings",
+        element: (
+          <PrivateRoute>
+            <Bookings></Bookings>
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+]);
+export default router;
