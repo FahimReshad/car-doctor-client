@@ -7,7 +7,6 @@ const Bookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
   const axiosSecure = useAxiosSecure()
-  // const url = `http://localhost:5000/checkout?email=${user?.email}`;
   const url = `/checkout?email=${user?.email}`;
   useEffect(() => {
     axiosSecure.get(url, { withCredentials: true })
@@ -17,13 +16,6 @@ const Bookings = () => {
       .catch((error) => {
         console.error("Error fetching bookings:", error);
       });
-
-    // fetch(url)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setBookings(data);
-    //     console.log(data);
-    //   });
   }, [url, axiosSecure]);
 
   const handleDelete = (id) => {
@@ -84,7 +76,7 @@ const Bookings = () => {
         </thead>
         <tbody>
           {bookings.map((booking) => (
-            <Booking
+            <Booking key={booking._id}
               booking={booking}
               handleDelete={handleDelete}
               handleConfirm={handleConfirm}
